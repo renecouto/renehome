@@ -5,6 +5,7 @@ import About from './pages/About';
 import './App.css';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import ExperimentsPage from './pages/ExperimentsPage';
+import SpringMassPage from './pages/SpringMassPage';
 
 function App() {
   return (
@@ -16,8 +17,11 @@ function App() {
         </Route>
         <Route path='/about' element={<About/>}>
         </Route>
+        <Route path='/experiments/spring-mass' element={<SpringMassPage/>}>
+        </Route>
         <Route path='/experiments' element={<ExperimentsPage/>}>
         </Route>
+
     </Routes>
   </BrowserRouter>
   );
