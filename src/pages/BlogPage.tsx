@@ -2,37 +2,48 @@ import React, {Component} from 'react';
 import NavbarC from "../components/NavBarC";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-const hello = require("../blogposts/hello.md");
+const allPosts = [
+    require("../blogposts/loveletter-to-rust.md"),
+    require("../blogposts/react-p5-lessons.md"),
+    require("../blogposts/hello.md"),
+];
 
 interface IProps {
 }
 
 interface IState {
-  terms: string;
+    posts: string[];
 }
 
 export default class BlogPage extends Component<IProps,IState> {
     constructor(props: object) {
         super(props)
     
-        this.state = { terms: "" }
+        this.state = { posts: [""] }
     }
 
     componentDidMount() {
-        fetch(hello.default).then((response) => response.text()).then((text) => {
-            this.setState({ terms: text })
-        })
+        const fetchedPosts = allPosts.map(y => fetch(y.default).then((response) => response.text()));
+        Promise.all(fetchedPosts).then((text) => {
+            this.setState({ posts: text })
+        });
     }
 
     render(){        
-        const {terms} = this.state;
-        console.log(terms);
+        const {posts} = this.state;
+        console.log(posts);
+        const renderedPosts = posts.map(p => {
+            return <div className="container mx-auto prose max-w-max border">
+                            <ReactMarkdown children={p} className="container mx-auto max-w-none" remarkPlugins={[remarkGfm]}/>
+                        </div>
+        });
         return (
             <div>
             <NavbarC/>
-                <div className="prose">
-                    <ReactMarkdown children={terms} remarkPlugins={[remarkGfm]}/>
-                </div>                    
+                <div className="container mx-auto space-y-8">
+                    
+                    {renderedPosts}
+                </div>
             </div>
         );
     }
