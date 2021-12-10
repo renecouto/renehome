@@ -7,11 +7,11 @@ interface ComponentProps {
 }
 
 class SpringMassSystemModel {
-    M: number = 0.2;
-    K: number = 40;
-    C: number = 1;
+    M: number = 2; // mass in kg
+    K: number = 20; // spring coefficient
+    C: number = 0.8; // drag
     leftwall: number = -5;
-    x1: number = 1;
+    x1: number = 2;
     x2: number = 0;
     u: number =  0;
 
@@ -150,26 +150,39 @@ export default class SpringMassSystem extends Component {
         this.dragging = false;
         this.pressed = false;
         this.lastMouseX = 0;
+        this.setMass = this.setMass.bind(this);
+        this.setSpringConstant = this.setSpringConstant.bind(this);
+        this.setDrag = this.setDrag.bind(this);
+        
+    }
+
+    setMass(event:  React.ChangeEvent<HTMLInputElement>) {
+        const parsed = parseInt(event.target?.value, 10);
+        if (!isNaN(parsed) && parsed > 0) {
+            this.model.M = parsed;
+        }
+    }
+
+    setSpringConstant(event:  React.ChangeEvent<HTMLInputElement>) {
+        const parsed = parseInt(event.target?.value, 10);
+        if (!isNaN(parsed) && parsed > 0) {
+            this.model.K = parsed;
+        }
+    }
+
+    setDrag(event:  React.ChangeEvent<HTMLInputElement>) {
+        const parsed = parseInt(event.target?.value, 10);
+        if (!isNaN(parsed) && parsed > 0) {
+            this.model.C = parsed;
+        }
     }
 
 
     stopDragListener(x: SpringMassSystem){return()=> {
-        // const p = this.p;
-        // const systemView = this.systemView;
-        // if (p != null && systemView != null ) {
-        //     if (p.dist(p.mouseX, p.mouseY, systemView == null? 0 : systemView.massX  + 50, p.height-60) < 60) {
         x.dragging = false;
-        //     }
-        // }        
     }}
     dragListener(x: SpringMassSystem){return () => {
-        // const p = this.p;
-        // const systemView = this.systemView;
-        // if (p != null && systemView != null ) {
-            // if (p.dist(p.mouseX, p.mouseY, systemView.massX + 50, p.height-60) < 60) {          
         x.dragging = true;
-            // }
-        // }
     }}
 	
     mySetup(x: SpringMassSystem){return (p5: p5Types, canvasParentRef: Element) =>{
@@ -212,6 +225,16 @@ export default class SpringMassSystem extends Component {
             systemView.makeDrawing(this.pressed);
         };
         
-        return <Sketch setup={this.mySetup(this)} draw={myDraw} />
+        return (
+        <div>
+            <span><h4>Parameters: </h4></span><br/>
+            <label htmlFor="Mass">Mass in kg      </label>
+            <input name="Mass" type="number" min="0" step="0.01" onChange={this.setMass} placeholder="2"/> <br/><br/>
+            <label htmlFor="SpringConstant">Spring constant(K)      </label>
+            <input name="SpringConstant" type="number" min="0" step="0.01" onChange={this.setSpringConstant} placeholder="20"/> <br/><br/>
+            <label htmlFor="Drag">Drag(C)      </label>
+            <input name="Drag" type="number" min="0" step="0.01" onChange={this.setDrag} placeholder="0.8"/> <br/><br/>
+            <Sketch setup={this.mySetup(this)} draw={myDraw} />
+        </div>)
     } 
 }
