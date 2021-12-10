@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0451db52.chunk.css",
+    "main.js": "/static/js/main.f05b8862.chunk.js",
+    "main.js.map": "/static/js/main.f05b8862.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.84b59f31.js",
+    "runtime-main.js.map": "/static/js/runtime-main.84b59f31.js.map",
+    "static/js/2.fe99118e.chunk.js": "/static/js/2.fe99118e.chunk.js",
+    "static/js/2.fe99118e.chunk.js.map": "/static/js/2.fe99118e.chunk.js.map",
+    "static/js/3.10bbeb24.chunk.js": "/static/js/3.10bbeb24.chunk.js",
+    "static/js/3.10bbeb24.chunk.js.map": "/static/js/3.10bbeb24.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.0451db52.chunk.css.map": "/static/css/main.0451db52.chunk.css.map",
+    "static/js/2.fe99118e.chunk.js.LICENSE.txt": "/static/js/2.fe99118e.chunk.js.LICENSE.txt",
+    "static/media/hello.md": "/static/media/hello.63cdf55a.md",
+    "static/media/loveletter-to-rust.md": "/static/media/loveletter-to-rust.21ec5475.md",
+    "static/media/react-p5-lessons.md": "/static/media/react-p5-lessons.92df44ff.md"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.84b59f31.js",
+    "static/js/2.fe99118e.chunk.js",
+    "static/css/main.0451db52.chunk.css",
+    "static/js/main.f05b8862.chunk.js"
+  ]
+}
