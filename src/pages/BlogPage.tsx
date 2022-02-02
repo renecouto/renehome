@@ -3,6 +3,7 @@ import NavbarC from "../components/NavBarC";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 const allPosts = [
+    require("../blogposts/python-sem-varzea-2.md"),
     require("../blogposts/python-sem-varzea-1.md"),
     require("../blogposts/loveletter-to-rust.md"),
     require("../blogposts/react-p5-lessons.md"),
